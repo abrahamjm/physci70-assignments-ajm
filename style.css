@@ -12,6 +12,10 @@ p {font-size: 16px;}
   padding-bottom: 70px;
 }
 
+body {
+  background-color: lightblue;
+}
+
 .topnav a {
   text-align: center;
 }
