@@ -12,6 +12,10 @@ p {font-size: 16px;}
   padding-bottom: 70px;
 }
 
+.row {
+  padding: 30px;
+}
+
 body {
   background-color: lightgrey;
 }
