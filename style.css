@@ -26,3 +26,10 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.topnav {
+  background-color: #333;
+  padding: 16px 16px;
+  display: flex;
+  justify-content: space-around;
+  }
