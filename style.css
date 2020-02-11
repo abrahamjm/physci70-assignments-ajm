@@ -35,8 +35,5 @@ body {
   justify-content: space-around;
   }
 
-  .img-responsive {
-    border: 5px;
-    border-color: black;
-
-  }
+ img style {
+    border:5px solid black }
