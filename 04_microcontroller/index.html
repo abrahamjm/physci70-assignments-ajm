@@ -71,16 +71,16 @@ void loop() {
     buttonState4 = digitalRead(buttonPin4);
     
   if (buttonState1 == HIGH) {
-   tone(buzzerPin, 440);
+   tone(buzzerPin, 440);        //equal tempered A//
   } 
   else  if (buttonState2 == HIGH) {
-    tone(buzzerPin, 523.25);
+    tone(buzzerPin, 523.25);    //equal tempered C//
    } 
   else if (buttonState3 == HIGH) {
-    tone(buzzerPin, 587.33);
+    tone(buzzerPin, 587.33);    //equal tempered D//
   }
   else if (buttonState4 == HIGH) {
-    tone(buzzerPin, 659.25);
+    tone(buzzerPin, 659.25);    //equal tempered E//
   }
   else{
     noTone(buzzerPin);
@@ -90,7 +90,24 @@ void loop() {
     </code></pre>
 
 
-      <p> Having learned from the Arduino website that one challenge the "tone" cuntion poses is that it will not fire a tone command until the previous tone command has been ended by a "noTone" function, I  </p>
+      <p> Having learned from the Arduino website that one challenge the "tone" cuntion poses is that it will not fire a tone command until the previous tone command has been ended by a "noTone" function, I initially wrote my "if" and "else" functions with a "noTone" called for every pitch. When only one button was pressed, no sound was produced, and when both buttons were pressed, the buzzer squealed horribly. It looked something like this. </p>
+
+      <pre><code> 
+    
+  if (buttonState1 == HIGH) {
+   tone(buzzerPin, 440);
+  } 
+  if else (buttonState1 == LOW) {
+    noTone(buzzerPin)
+}
+
+    </code></pre>
+
+    <p> I repeated this for each output. I was confused until I sat down and wrote out the logical argument and realized the contradiction I was making. By calling "noTone" after each individual "tone," I told the keyboard not to play unless every button was pressed. The fix was simple. Now the "voide loop" could be translated as "if button one is pressed, play A, if button 2 is pressed, play C, if button 3 is pressed, play D, if button 4 is pressed, play E, and in any other case don't play anything at all. " </p>
+
+    <div class="row">
+
+    <p> Using these 4 notes, I made a cheesy little riff and layered over some even cheesier synth parts just to hear the brash little piezo keyboard in context. DEMO SOON TO BE UPLOADED. <p>
 
 
 
