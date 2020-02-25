@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>PHYSCI 70: Intro to Digital Fabrication </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="../style.css" rel="stylesheet">
+</head>
+<body>
+
+  <div class="topnav text-center">
+  <a href='../index.html'>home</a>
+  <a href='../about/index.html'>about</a>
+  <a href='../contact/index.html'>contact</a>
+  <a href='../final project/index.html'>final project</a>
+</div>
+
+<div class="container-fluid">
+  <h3>Week 4: Microcontroller programming</h3>
+    <div class="row">
+    
+      <p> For this week's project, I was eager to use the "tone" function to create a small button-based keyboard using Arduino. My goal was to program the ItsyBitsy to create a series of pitches assigned respectivly to a series of buttons. While my goal was only to create 3 buttons (in order to play the notes "a" "b" and "e") I hoped that the project would be easily scalable into a larger keyboard. All the pitches are being played back on a small piezo buzzer.</p>
+
+      <div class="row">
+
+      <p> The keyboard uses 4 switches (I added one so that I could play a slightly more complex melody for my demo) each with a pulldown resistor. The switches are run into digital pins 2, 3, 4, and 5, all set as imputs. The buzzer runs from digital pin 9, set as an output. <p>
+
+      <img src="../04_microcontroller/arduinokeyboard1.png" class="img-responsive margin" style="width:100%" alt="Arduino keyboard">
+
+      <p>IIn the next photo, the orange wire runs from the 5v output of the Nano to the Switch, the yellow wire runs to digital pun 5, and the resistor connects from the switch to the ground in order to pull down any floating current.</p>
+
+      <img src="../04_microcontroller/arduinokeyboard2.png" class="img-responsive margin" style="width:100%" alt="Button Side View">
+
+      <p> However, when I went home over the weekend for my bandmate's wedding, I brought the two peices with me. When I showed them to my father, and they, seeminly magically, fit together perfectly. My assumption is the high humidity in DC let the cardboard expand slightly.</p>
+
+
+      <img src="../02_design/4.png" class="img-responsive margin" style="width:100%" alt="Sticking Circles">
+
+      <p> For my big finish, I wanted to create a set of Dungeons and Dragons dice made as a cardboard kit. I decided to start with a D4. While I hope to eventually be able to engrave a decorative number on each side, I started by cutting simple numbers out of each side.</p>
+
+      <img src="../02_design/5.png" class="img-responsive margin" style="width:100%" alt="Dice Parts">
+
+       <p>My first design had two problems. One, I foolishly put 1 number on each side, not the three numbers required. Secondly, I didn't take into acount that the ciruclar connectors were not angled. The only other time I've used this slotting method was with wood, using a chop saw which could be angled. Because the cardboard is fleixble, I was still able to assemble the die</p>
+
+      <img src="../02_design/5.png" class="img-responsive margin" style="width:100%" alt="Constructed Dice">
+       <p>Next step: adding the other dice and engraving numbers!</p>
+
+
+   
+  </div>
+
+ 
+  
+  
+</div>
+
+</body>
+</html>
