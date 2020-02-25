@@ -34,19 +34,65 @@
 
       <img src="../04_microcontroller/arduinokeyboard2.png" class="img-responsive margin" style="width:100%" alt="Button Side View">
 
-      <p> However, when I went home over the weekend for my bandmate's wedding, I brought the two peices with me. When I showed them to my father, and they, seeminly magically, fit together perfectly. My assumption is the high humidity in DC let the cardboard expand slightly.</p>
+      <p> The code I wrote for this 4 button keyboard is as follows.</p>
+
+      <pre><code> 
+
+  // setting the pin numbers//
+    const int buttonPin1 = 2;     // key 1 //
+    const int buttonPin2 = 3;     // key 2 //
+    const int buttonPin3 = 4;     // key 3 //
+    const int buttonPin4 = 5;     // key 4 //
+    const int buzzerPin = 9;      // buzzer output //
+
+  // defining the original pin states //
+    int buttonState1 = 0;         // variable for reading key 1 status //
+    int buttonState2 = 0;         // variable for reading key 2 status //
+    int buttonState3 = 0;         // variable for reading key 3 status //
+    int buttonState4 = 0;         // variable for reading key 4 status //
+
+void setup() {
+  // setting buzzerPin as output //
+
+    pinMode(buzzerPin, OUTPUT);
+
+  // setting button pins as imputs //
+    pinMode(buttonPin1, INPUT);
+    pinMode(buttonPin2, INPUT);
+    pinMode(buttonPin3, INPUT);
+    pinMode(buttonPin4, INPUT);
+}
+
+void loop() {
+  // read the state of the button value //
+    buttonState1 = digitalRead(buttonPin1);
+    buttonState2 = digitalRead(buttonPin2);
+    buttonState3 = digitalRead(buttonPin3);
+    buttonState4 = digitalRead(buttonPin4);
+    
+  if (buttonState1 == HIGH) {
+   tone(buzzerPin, 440);
+  } 
+  else  if (buttonState2 == HIGH) {
+    tone(buzzerPin, 523.25);
+   } 
+  else if (buttonState3 == HIGH) {
+    tone(buzzerPin, 587.33);
+  }
+  else if (buttonState4 == HIGH) {
+    tone(buzzerPin, 659.25);
+  }
+  else{
+    noTone(buzzerPin);
+  }
+}
+
+    </code></pre>
 
 
-      <img src="../02_design/4.png" class="img-responsive margin" style="width:100%" alt="Sticking Circles">
+      <p> Having learned from the Arduino website that one challenge the "tone" cuntion poses is that it will not fire a tone command until the previous tone command has been ended by a "noTone" function, I  </p>
 
-      <p> For my big finish, I wanted to create a set of Dungeons and Dragons dice made as a cardboard kit. I decided to start with a D4. While I hope to eventually be able to engrave a decorative number on each side, I started by cutting simple numbers out of each side.</p>
 
-      <img src="../02_design/5.png" class="img-responsive margin" style="width:100%" alt="Dice Parts">
-
-       <p>My first design had two problems. One, I foolishly put 1 number on each side, not the three numbers required. Secondly, I didn't take into acount that the ciruclar connectors were not angled. The only other time I've used this slotting method was with wood, using a chop saw which could be angled. Because the cardboard is fleixble, I was still able to assemble the die</p>
-
-      <img src="../02_design/5.png" class="img-responsive margin" style="width:100%" alt="Constructed Dice">
-       <p>Next step: adding the other dice and engraving numbers!</p>
 
 
    
