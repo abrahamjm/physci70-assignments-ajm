@@ -107,7 +107,88 @@ void loop() {
 
     <div class="row">
 
-    <p> Using these 4 notes, I made a cheesy little riff and layered over some even cheesier synth parts just to hear the brash little piezo keyboard in context. DEMO SOON TO BE UPLOADED. <p>
+    <p> Using these 4 notes, I made a cheesy little riff and layered over some even cheesier synth parts just to hear the brash little piezo keyboard in context. DEMO SOON TO BE UPLOADED. </p>
+
+    <div class="row">
+
+      <p> On the ItsyBitsy, the wiring was almost identical, though I ran switches to pins 7, 9, 10, and 11, and ran the buzzer from pin 12. </p>
+
+
+        <p> I created a function, which Alex and I named playSound, in order to help replace the "tone" function. </p>
+
+   <pre><code>  
+void playSound(int x){              //set x as variable defining frequency //
+  int myDelay = (1/x)*1000;        //calculate period of "x" frequency and convert to milliseconds //
+  analogWrite(buzzerPin, 255);
+  delay (myDelay/2);
+  analogWrite(buzzerPin, 0);
+  delay (myDelay/2);
+}
+</code></pre>
+
+<p> "playSound" takes one argument, frequency, converts it to the period of the wave in milliseconds, and then uses that to set delays to create a square wave. Here's the full code.</p>
+
+ <pre><code> 
+
+
+  // setting the pin numbers//
+    const int buttonPin1 = 7;     // key 1 //
+    const int buttonPin2 = 9;     // key 2 //
+    const int buttonPin3 = 10;     // key 3 //
+    const int buttonPin4 = 11;     // key 4 //
+    const int buzzerPin = 12;      // buzzer output //
+
+  // defining the original pin states //
+    int buttonState1 = 0;         // variable for reading key 1 status //
+    int buttonState2 = 0;         // variable for reading key 2 status //
+    int buttonState3 = 0;         // variable for reading key 3 status //
+    int buttonState4 = 0;         // variable for reading key 4 status //
+
+void playSound(int x){              //set x as variable defining frequency //
+  int myDelay = (1/x)*1000;        //calculate period of "x" frequency and convert to milliseconds //
+  analogWrite(buzzerPin, 255);
+  delay (myDelay/2);
+  analogWrite(buzzerPin, 0);
+  delay (myDelay/2);
+}
+  
+
+void setup() {
+  // setting buzzerPin as output //
+    pinMode(buzzerPin, OUTPUT);
+  // setting button pins as imputs //
+    pinMode(buttonPin1, INPUT);
+    pinMode(buttonPin2, INPUT);
+    pinMode(buttonPin3, INPUT);
+    pinMode(buttonPin4, INPUT);
+}
+
+void loop() {
+  // read the state of the pushbutton value //
+    buttonState1 = digitalRead(buttonPin1);
+    buttonState2 = digitalRead(buttonPin2);
+    buttonState3 = digitalRead(buttonPin3);
+    buttonState4 = digitalRead(buttonPin4);
+    
+ if (buttonState1 == HIGH) {
+ playSound(440);
+  } 
+  else  if (buttonState2 == HIGH) {
+ playSound(523.25);
+   } 
+  else if (buttonState3 == HIGH) {
+ playSound(587.33);
+  }
+  else if (buttonState4 == HIGH) {
+ playSound(659.25);
+  }
+  else{
+  analogWrite(buzzerPin, 0);
+  }
+}
+
+</code></pre>
+
 
 
 
