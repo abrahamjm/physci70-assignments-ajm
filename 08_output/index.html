@@ -21,12 +21,132 @@
 <div class="container-fluid">
   <h3>Week 8: Electronic Output Devices</h3>
     
-      <p> I've enjoyed using buzzers to create mini squarewave keyboards and my virtual concertina, but I was glad to hook up a speaker to my arduino this week.</p>
+      <p> I've enjoyed using piezo buzzers to create mini squarewave keyboards and my virtual concertina, but I was glad to hook up a speaker to my arduino this week.</p>
 
-      <img src="../" class="img-responsive margin" style="width:100%" alt="Ring">
+      <p> Before leaving campus, I snagged two boards with TDA2030A amplifier chip from the lab. The are tiny chips with switchable resistance, which has been very handy as I've moved between different speakers and input sources. </p>
 
-      <p> <p>
+      <p>The boards have four imputs: VCC, Input, and two grounds. I hooked up the 9v power supply included in our kits, and ran the input to an Arduino Nano. I also included a potentiometer as a volume knob and an aditional 1k resistor just to bring the level down a little more.
 
+      <img src="../08_output/board.png" class="img-responsive margin" style="width:100%" alt="Ring">
+
+      <p> Using a basic tone function, I was able to play sound through a small passive bookshelf speaker. On its highest resistance setting, the amplifier chip was easily able to distort the speaker. [I'll be adding dB measurements once I unpack my SPL meter].<p>
+
+      <img src="../08_output/speaker.png" class="img-responsive margin" style="width:100%" alt="Ring">
+
+      <p> Following up on work I did last week, I programmed the Arduino to play the 1st part of the English folk tune used for the Abbots Bromley Horn Dance. The tune is in a heavily swung 6/8. In order to convey that pulse, I used a library originally designed by Connor Nishijima. In order to change the perceived volume of the square wave, he assigns the Arduino's Timer 0 to modulate the signal with PWM above the sound of human hearing. His complete documentation is here: https://github.com/connornishijima/arduino-volume1. His default pulse is at 62,500Hz, which creates an audible warble in my speakers, but I was able to remove that effect by raising the PWM to 100,000Hz, which he has also done in his newest library.</p>
+
+      <p> The tune is as follows! The argument order is (Pin, Frequency, and Byte Volume)</p>
+
+      <pre><code> 
+#include "Volume3.h" // Including Connor's Volume library
+#define speakerPin 9
+
+}
+void loop() {
+  
+    vol.tone(speakerPin,880,400);
+    delay(333);
+    vol.tone(speakerPin,660,500);
+    delay(666);
+    vol.tone(speakerPin,880,400);
+    delay(333);
+    vol.tone(speakerPin,528,500);
+    delay(666);
+    vol.tone(speakerPin,880,400);
+    delay(333);
+    vol.tone(speakerPin,660,500);
+    delay(666);
+    vol.tone(speakerPin,880,400);
+    delay(333);
+    vol.tone(speakerPin,440,500);
+    delay(666);
+    
+    vol.tone(speakerPin,528,400);
+    delay(333);
+    vol.tone(speakerPin,494,600);
+    delay(333);
+    vol.tone(speakerPin,528,400);
+    delay(333);
+    vol.tone(speakerPin,588,400);
+    delay(333);
+     vol.tone(speakerPin,528,600);
+    delay(333);
+    vol.tone(speakerPin,588,400);
+    delay(333);
+    vol.tone(speakerPin,660,400);
+    delay(333);
+    vol.tone(speakerPin,588,600);
+    delay(333);
+    vol.tone(speakerPin,528,400);
+    delay(333);
+    vol.tone(speakerPin,494,400);
+    delay(333);
+    vol.tone(speakerPin,528,500);
+    delay(666);
+
+     vol.tone(speakerPin,880,400);
+    delay(333);
+    vol.tone(speakerPin,660,500);
+    delay(666);
+    vol.tone(speakerPin,880,400);
+    delay(333);
+    vol.tone(speakerPin,528,500);
+    delay(666);
+    vol.tone(speakerPin,880,400);
+    delay(333);
+    vol.tone(speakerPin,660,500);
+    delay(666);
+    vol.tone(speakerPin,880,400);
+    delay(333);
+    vol.tone(speakerPin,440,500);
+    delay(666);
+    
+    vol.tone(speakerPin,528,400);
+    delay(333);
+    vol.tone(speakerPin,494,600);
+    delay(333);
+    vol.tone(speakerPin,528,400);
+    delay(333);
+    vol.tone(speakerPin,588,400);
+    delay(333);
+     vol.tone(speakerPin,528,600);
+    delay(333);
+    vol.tone(speakerPin,588,400);
+    delay(333);
+    vol.tone(speakerPin,660,400);
+    delay(333);
+    vol.tone(speakerPin,588,600);
+    delay(333);
+    vol.tone(speakerPin,528,400);
+    delay(333);
+    vol.tone(speakerPin,494,400);
+    delay(333);
+    vol.tone(speakerPin,440,500);
+    delay(666);
+ 
+  }
+}
+
+    </code></pre>
+
+<p> While it is still far from musical, the ability to program volume for each note gives a much more defined sense of pulse. Here it is!</p>
+
+<audio controls>
+    <source src="" type="audio/wav">
+      Your browser does not support the audio tag.
+</audio>
+
+<p> My next hope is to write my own tone library which integrates super sonic PWM volume control with polyphony by assigning aditional timers.</p>
+
+<p> Finally, I had to add an analogue imput to the amplifier. Using aligator clips and a stereo guitar jack, I hooked everything up.</p>
+
+
+<img src="../08_output/jack.png" class="img-responsive margin" style="width:100%" alt="Ring">
+
+<p>I'm only using one amplifier (though I hope to make it stero soon) so I ran both tabs of the stereo jack into the input in a massive violation of my own principles.</p>  
+
+
+<img src="../08_output/clips.png" class="img-responsive margin" style="width:100%" alt="clips">  
       
 
    
