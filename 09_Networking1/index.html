@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>PHYSCI 70: Intro to Digital Fabrication </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="../style.css" rel="stylesheet">
+</head>
+<body>
+
+  <div class="topnav text-center">
+  <a href='../index.html'>home</a>
+  <a href='../about/index.html'>about</a>
+  <a href='../contact/index.html'>contact</a>
+  <a href='../final project/index.html'>final project</a>
+</div>
+
+<div class="container-fluid">
+  <h3>Week 9: Networking Part 1</h3>
+    
+      <p> It was a bit of a disapointing week for me because of a struggle with both my ItsyBitsy and ATSAMD11. My hope for this weekend was to build a simple intercom/wireless microphone set up that would let one chip recieve audio, output it as an anolog signal, and send back another monitor signal which could be routed to headphones. I enjoyed exploring the RF24Audio library by TMRh20 which makess two way audio transfer relatively easy.</p>
+
+      <p> I'm going to try using a PC in the hope that I will be able to get the Itsybity and its ADC up and running!</p>
+
+      <p>To practice getting microcontrollers talking to each other, I used Rob's code to send a buttonState from the Feather to my Nano, which, which played a tone when the button was pressed.</p>
+
+      <img src="../09_Networking1/communicaTONE.jpg" class="img-responsive margin" style="width:100%" alt="circuit board">
+
+      <p>The transmitter code is as follows.</p>
+
+      <pre><code> 
+        const int out_pin = 13;     //naming my pin to send signal to the nano
+const int button_pin = 15;  //naming my pin to recieve the button press
+
+void setup() {
+  pinMode(button_pin, INPUT_PULLUP);  //setting up the pin the read the button state and include the built in pullup resistor
+  pinMode(out_pin, OUTPUT);           //setting up the pin to send signal to the nano
+
+  Serial.begin(9600);
+}
+
+void loop() {
+  int buttonState = digitalRead(button_pin);
+  Serial.println(buttonState);
+  digitalWrite(out_pin, buttonState);         //sending the button state to the nano
+  delay(10);
+  }
+
+    </code></pre>
+
+    <p>The reciever code is as follows.</p>
+
+      <pre><code> 
+
+int val = 0;
+
+void setup() {
+  pinMode(5, INPUT_PULLUP); //setting pin 5 to recieve input from the Feather
+  pinMode(7, OUTPUT);       //setting pin 7 to send signal to the buzzer
+}
+
+void loop() {
+  val = digitalRead(5);     //read the value of the signal
+  if (val == LOW){          //if the button is pressed...
+    tone(7, 440);           //play an "A"
+      }
+      
+  else {                    //if the button is not pressed...
+    noTone(7);              //don't!
+  }
+}
+ 
+    </code></pre>
+   
+  </div>
+
+</div>
+
+</body>
+</html>
