@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html class="no-js" lang="en">
 <head>
@@ -11,25 +12,26 @@
 	<button id="turn-off" name="turnoff">Turn Off </button>
 
 	<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-app.js"></script>
 
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
+	<!-- TODO: Add SDKs for Firebase products that you want to use
+	     https://firebase.google.com/docs/web/setup#available-libraries -->
+	<script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-database.js"></script>
 
-<script>
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyBRF_6hwhEoRoK2QUlwrv6lmiIOLbwvzQ0",
-    authDomain: "esp32-led-3078a.firebaseapp.com",
-    databaseURL: "https://esp32-led-3078a.firebaseio.com",
-    projectId: "esp32-led-3078a",
-    storageBucket: "esp32-led-3078a.appspot.com",
-    messagingSenderId: "151263082603",
-    appId: "1:151263082603:web:0d953b54aa95fc22aad92e"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-
+	<script>
+	// Your web app's Firebase configuration
+	const firebaseConfig = {
+  apiKey: "AIzaSyBRF_6hwhEoRoK2QUlwrv6lmiIOLbwvzQ0",
+  authDomain: "esp32-led-3078a.firebaseapp.com",
+  databaseURL: "https://esp32-led-3078a.firebaseio.com",
+  projectId: "esp32-led-3078a",
+  storageBucket: "esp32-led-3078a.appspot.com",
+  messagingSenderId: "151263082603",
+  appId: "1:151263082603:web:0d953b54aa95fc22aad92e"
+};
+	
+	// Initialize Firebase
+	firebase.initializeApp(firebaseConfig);
 
 	// Get a database reference to our blog
 	var ref = firebase.database().ref("/");
