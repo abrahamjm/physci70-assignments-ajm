@@ -29,11 +29,9 @@ body {
 }
 
 .topnav {
-  background-color: #333;
+  background-color: #646464;
   padding: 16px 16px;
   display: flex;
   justify-content: space-around;
   }
 
- img style {
-    border:5px solid black }
