@@ -21,4 +21,88 @@
 <div class="container-fluid">
   <h3>Week 10: Networking Part 2</h3>
     
-      <p> documentation here</p>
+      <p> In order to test out the ESP's Wifi connection and to try working with Firebase, I used a sonar sensor, the same one I used earlier this semester to create my digital concertina, to build a cookie jar which can detect whether it is time to get more cookies.</p>
+
+      <p>At its simplest, the jar (although because it is Passover, my project was tested with matzah) checks the contents of the jar, uses a map function to calculate the percent of cookies, and updates Firebase.</p>
+
+      <pre>
+        <code>
+#include WiFi.h
+#include FirebaseESP32.h
+
+#define FIREBASE_HOST "https://****.firebaseio.com"
+#define FIREBASE_AUTH "****"
+#define WIFI_SSID "****"
+#define WIFI_PASSWORD "****"
+
+String fireString = "";
+
+const int trigPin = 13;
+const int echoPin = 12;
+const int button_pin = 27;
+
+long duration;
+int distance;
+int percentFull;
+
+FirebaseData firebaseData;
+
+void setup() {
+  Serial.begin(9600);
+  delay(1000);
+  
+  pinMode(button_pin, INPUT_PULLUP);
+  pinMode(trigPin, OUTPUT); 
+  pinMode(echoPin, INPUT);
+
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+
+  Serial.print("Connecting to ");
+  Serial.print(WIFI_SSID);
+  while (WiFi.status() != WL_CONNECTED) {
+    Serial.print(".");
+    delay(500);
+  }
+
+  Serial.println();
+  Serial.print("Connected to ");
+  Serial.println(WIFI_SSID);
+  Serial.print("IP Address is : ");
+  Serial.println(WiFi.localIP());                                // print local IP address
+  Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);                  // connect to firebase
+  Firebase.reconnectWiFi(true);
+  Firebase.set(firebaseData, "/COOKIE_PERCENT", 100);
+}
+
+
+void loop() {
+  int buttonState = digitalRead(button_pin);
+    
+  if (buttonState == LOW){
+    digitalWrite(trigPin, LOW);
+    delayMicroseconds(2);
+
+    digitalWrite(trigPin, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(trigPin, LOW);
+
+    duration = pulseIn(echoPin, HIGH);
+
+    distance= duration*0.034/2;
+    percentFull = map(distance, 0, 8, 100, 0);
+    Serial.print(distance);
+    Serial.println();
+    Firebase.set(firebaseData, "/COOKIE_PERCENT", percentFull);
+    }
+
+  delay(1000);
+}
+
+  </code>
+</pre>
+
+<p> In order to save battery, the sensor triggers once when a button is depressed. I imagine that using a capacitive sensor which read a button press only when the jar lid closes, the jar would only check the cookie level when the jar had been opened: i.e. just after the cookie state potentially changed. I installed the prototype in a shoebox strong enough to hold the battery pack. The sonar sensor was simply taped to the </p>
+
+<img src="./cookieRead.png" class="center" style="width:30%; border:5px solid black"alt="cookieRead">
+
+<p> The final step of my project is to send an email when the cookie level reaches a critical condition (nessecitating the ordering of more cookies). I hadn't found a lightweight solution I was happy with until class, when Christopher demonstrated the Mozbit esp32 mail client library which I am eager to include in the next interation of the Cookie Reader.
